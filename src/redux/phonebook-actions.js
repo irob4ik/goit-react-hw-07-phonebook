@@ -9,10 +9,14 @@ const addContact = createAction('contacts/add', ({ name, number }) => ({
     },
 }));
 
-const deleteContact = createAction('contacts/delete')
+const deleteContact = createAction('contacts/delete');
 
 const changeFilter = createAction('contacts/changeFilter');
 
-const actions = { addContact, deleteContact, changeFilter };
+const actions = {
+    addContact,
+    deleteContact,
+    changeFilter,
+};
 
 export default actions;
