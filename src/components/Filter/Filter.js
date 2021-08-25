@@ -1,10 +1,11 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { contactsSelectors } from '../../redux';
 import actions from '../../redux/phonebook-actions';
 import styles from './filter.module.css'
 
 export default function Filter() {
-    const value = useSelector(state => state.contacts.filter);
+    const value = useSelector(contactsSelectors.getFilter);
     const dispatch = useDispatch();
 
     return (
