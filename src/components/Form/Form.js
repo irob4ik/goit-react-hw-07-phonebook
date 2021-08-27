@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import contactActions from '../../redux/phonebook-actions';
+import { contactsOperations } from '../../redux';
 import styles from './form.module.css';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -13,8 +14,11 @@ export default function Form({ option }) {
 
     const handleSubmit = evt => {
         evt.preventDefault();
+        const id = uuidv4();
+        const newContact = { id, name, number };
 
-        dispatch(contactActions.addContact({ name, number }));
+        dispatch(contactActions.addContact(newContact));
+        dispatch(contactsOperations.postContacts(newContact));
 
         setName('');
         setNumber('');      

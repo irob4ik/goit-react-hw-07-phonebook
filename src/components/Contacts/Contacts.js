@@ -9,6 +9,8 @@ export default function Contacts() {
     const { items, filter } = useSelector(contactsSelectors.getContacts);
     const list = filteredContacts(items, filter);
 
+    console.log(items);
+
     useEffect(() => {
         dispatch(contactsOperations.fetchContacts())
     }, [dispatch]);
@@ -16,12 +18,15 @@ export default function Contacts() {
     return (
         <>
             <ul className={styles.list}>
-                {list.map(({ number, name }) => (
+                {list.map(({ number, name, id }) => (
                     <li key={number} className={styles.listItem}>
                         <p className={styles.contactName}>{name}: {number}</p>
                         <button
                             className={styles.contactBtn}
-                            onClick={() => dispatch(actions.deleteContact(number))}
+                            onClick={() => {
+                                dispatch(contactsOperations.deleteContacts(id));
+                                dispatch(actions.deleteContact(number));                                
+                            }}
                         >Delete
                         </button>
                     </li>
